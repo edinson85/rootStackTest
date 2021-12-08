@@ -22,13 +22,11 @@ final class Version20211208155006 extends AbstractMigration
         $this->addSql('
             CREATE TABLE `categoria` (
                 id CHAR(36) NOT NULL PRIMARY KEY,
-                name VARCHAR(100) NOT NULL,
-                id_page VARCHAR(100) NOT NULL,
+                name VARCHAR(100) NOT NULL,                
                 path VARCHAR(100) NOT NULL,                
                 created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                INDEX IDX_categoria_id_page (id_page),
-                CONSTRAINT U_categoria_id_page UNIQUE KEY (id_page)
+                updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,                
+                CONSTRAINT U_categoria_name UNIQUE KEY (name)
             ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB'
         );
 

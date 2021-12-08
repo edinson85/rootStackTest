@@ -8,9 +8,9 @@ use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 class CategoriaAlreadyExistException extends ConflictHttpException
 {
-    private const MESSAGE = 'Categoria con id page %s ya existe';
+    private const MESSAGE = 'Categoria con nombre %s ya existe';
 
-    public static function fromIdPage(string $nombre): self
+    public static function fromName(string $nombre): self
     {
         throw new self(\sprintf(self::MESSAGE, $nombre));
     }

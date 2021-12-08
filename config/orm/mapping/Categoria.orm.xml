@@ -3,11 +3,17 @@
     <entity name="App\Entity\Categoria" table="categoria">
         <id name="id" type="string" length="36"/>
 
-        <field name="name" length="100"/>
-        <field name="idPage" length="100"/>
+        <field name="name" length="100"/>        
         <field name="path" length="100"/>        
         <field name="createdAt" type="datetime"/>
         <field name="updatedAt" type="datetime"/>
+        
+        <many-to-one field="padre" target-entity="App\Entity\Categoria" inversed-by="subCategorias"/>   
+        <one-to-many field="subCategorias" target-entity="App\Entity\Categoria" mapped-by="padre">
+            <cascade>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
 
         <lifecycle-callbacks>
             <lifecycle-callback type="preUpdate" method="markAsUpdated"/>

@@ -9,7 +9,7 @@ use App\Exception\Categoria\CategoriaAlreadyExistException;
 use App\Repository\CategoriaRepository;
 
 
-class CategoriaRegisterService
+class SubCategoriaRegisterService
 {
     private CategoriaRepository $categoriaRepository;    
 
@@ -19,16 +19,16 @@ class CategoriaRegisterService
         $this->categoriaRepository = $categoriaRepository;        
     }
 
-    public function create(string $name, string $path): Categoria
-    {
-        $categoria = new Categoria($name, $path);        
-        
-        try {
-            $this->categoriaRepository->save($categoria);
+    public function create(string $name, string $path,string $idPadre): Categoria
+    {        
+        $categoria = new Categoria($name, $path);          
+        $padre = $this->categoriaRepository->findOneById($idPadre);
+        $categoria->setPadre($padre);
+        try{
+            $this->categoriaRepository->save($categoria);        
         } catch (\Exception $exception) {
             throw CategoriaAlreadyExistException::fromName($name);
-        }        
-
+        }          
         return $categoria;
     }
 }

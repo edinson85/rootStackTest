@@ -1,6 +1,6 @@
 {
-    "name": "juanwilde/symfony-api-platform",
-    "description": "Udemy course with Symfony and API Platform",
+    "name": "edsolarte/symfony-api-platform",
+    "description": "Prueba para RootStack",
     "type": "project",
     "license": "proprietary",
     "require": {

@@ -21,8 +21,7 @@ class RegisterCategoria
     public function __invoke(Request $request): Categoria
     {
         return $this->categoriaRegisterService->create(
-            RequestService::getField($request, 'name'),
-            RequestService::getField($request, 'idPage'),
+            RequestService::getField($request, 'name'),            
             RequestService::getField($request, 'path')
         );
     }

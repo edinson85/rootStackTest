@@ -54,6 +54,8 @@ abstract class BaseRepository
      */
     public function saveEntity(object $entity)
     {
+        //dump($entity);
+        //die;
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
     }

@@ -7,7 +7,19 @@ App\Entity\Categoria:
       method: POST      
       path: /categoria/registerCategoria
       controller: App\Api\Action\Categoria\RegisterCategoria
+      normalization_context:
+        groups: [category_read]
       denormalization_context:
         groups: [category_create]
       openapi_context:
         summary: Creación de categoria
+    registerSubCategoria:
+      method: POST      
+      path: /categoria/registerSubCategoria
+      controller: App\Api\Action\Categoria\RegisterSubCategoria
+      normalization_context:
+        groups: [sub_category_read]      
+      denormalization_context:
+        groups: [sub_category_create]
+      openapi_context:
+        summary: Creación de sub categoria        

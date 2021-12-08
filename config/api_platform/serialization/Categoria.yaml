@@ -1,0 +1,14 @@
+App\Entity\Categoria:
+  attributes:
+    id:
+      groups: [category_read]
+    name:
+      groups: [category_read, category_create, category_update]
+    idPage:
+      groups: [category_read, category_create, category_update]
+    path:
+      groups: [category_read, category_create, category_update]    
+    createdAt:
+      groups: [category_read]
+    updatedAt:
+      groups: [category_read]

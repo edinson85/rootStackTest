@@ -1,0 +1,13 @@
+App\Entity\Categoria:
+  attributes:
+    normalization_context:
+      groups: [category_read]
+  collectionOperations:
+    register:
+      method: POST      
+      path: /categoria/registerCategoria
+      controller: App\Api\Action\Categoria\RegisterCategoria
+      denormalization_context:
+        groups: [category_create]
+      openapi_context:
+        summary: Creación de categoria

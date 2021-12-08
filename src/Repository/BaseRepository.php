@@ -89,7 +89,7 @@ abstract class BaseRepository
     /**
      * @return ObjectManager|EntityManager
      */
-    private function getEntityManager()
+    public function getEntityManager()
     {
         $entityManager = $this->managerRegistry->getManager();
 

@@ -23,3 +23,10 @@ App\Entity\Categoria:
         groups: [sub_category_create]
       openapi_context:
         summary: Creación de sub categoria        
+    cargarCategorias:
+      method: POST      
+      path: /categoria/cargarCategorias
+      controller: App\Api\Action\Categoria\CargarCategorias
+      deserialize: false
+      openapi_context:
+        summary: Carga automática de categorias y sub categorias

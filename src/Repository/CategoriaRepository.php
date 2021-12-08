@@ -36,11 +36,16 @@ class CategoriaRepository extends BaseRepository
 
     public function findOneByNombreOrFail(string $nombre): Categoria
     {
-        if (null === $categoria = $this->objectRepository->findOneBy(['nombre' => $nombre])) {
+        if (null === $categoria = $this->objectRepository->findOneBy(['name' => $nombre])) {
             throw CategoriaNotFoundException::fromNombre($nombre);
         }
 
         return $categoria;
+    }
+    public function findOneByNombre(string $nombre): ?Categoria
+    {   
+        $respuesta = $this->objectRepository->findOneBy(['name' => $nombre]);        
+        return $this->objectRepository->findOneBy(['name' => $nombre]);                    
     }
     /**
      * @throws ORMException

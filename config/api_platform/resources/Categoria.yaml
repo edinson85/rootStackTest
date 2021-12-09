@@ -29,25 +29,113 @@ App\Entity\Categoria:
       controller: App\Api\Action\Categoria\CargarCategorias
       deserialize: false
       openapi_context:
-        summary: Carga automática de categorias y sub categorias
+        summary: Carga automática de categorias y sub categorias      
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inicio:
+                    type: string                          
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    resultado:
+                      type: bolean         
+                    mensaje:
+                      type: string     
     clasificadosCategoria:
       method: POST      
       path: /categoria/clasificadosCategoria
       controller: App\Api\Action\Categoria\CladificadosPorCategoria
       deserialize: false
       openapi_context:
-        summary: Mostrar los clasificados por categoria        
+        summary: Clasificados por categoria        
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  idCategoria:
+                    type: string
+                    required: true                                      
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string 
+
     paginarCategorias:
       method: POST      
       path: /categoria/paginarCategorias
       controller: App\Api\Action\Categoria\PaginarCategorias
       deserialize: false
       openapi_context:
-        summary: Mostrar los clasificados por categoria                
+      openapi_context:
+        summary: Paginar categorias                              
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tam:
+                    type: string
+                    required: true                    
+                  pagina:
+                    type: string
+                    required: true                                        
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: array 
     paginarSubCategorias:
       method: POST      
       path: /categoria/paginarSubCategorias
       controller: App\Api\Action\Categoria\PaginarSubCategorias
       deserialize: false
       openapi_context:
-        summary: Mostrar los clasificados por categoria                        
+        summary: Paginar sub categorias                              
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  idPadre:
+                    type: string
+                    required: true
+                  tam:
+                    type: string
+                    required: true                    
+                  pagina:
+                    type: string
+                    required: true                                        
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: array                              

@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Service\Categoria;
 
 use App\Entity\Categoria;
-use App\Exception\Categoria\CategoriaAlreadyExistException;
+use App\Exception\Categoria\CategoriaNotFoundException;
 use App\Repository\CategoriaRepository;
+use App\Service\Utiles\UtilesScraper;
 
 
 class ClasificadosPorCategoriaService
@@ -19,16 +20,13 @@ class ClasificadosPorCategoriaService
         $this->categoriaRepository = $categoriaRepository;        
     }
 
-    public function create(string $name, string $path,string $idPadre): Categoria
-    {        
-        $categoria = new Categoria($name, $path);          
-        $padre = $this->categoriaRepository->findOneById($idPadre);
-        $categoria->setPadre($padre);
-        try{
-            $this->categoriaRepository->save($categoria);        
-        } catch (\Exception $exception) {
-            throw CategoriaAlreadyExistException::fromName($name);
-        }          
-        return $categoria;
+    public function buscar(string $idCategoria): ?string
+    {                
+        $categoria = $this->categoriaRepository->findOneById($idCategoria);
+        if(is_null($categoria)){
+            throw CategoriaNotFoundException::fromCategoriaId($idCategoria);
+        }
+        $retorno = UtilesScraper::curlWeb(UtilesScraper::URL_PRINCIPAL.$categoria->getPath(),true);
+        return $retorno;
     }
 }

@@ -30,3 +30,17 @@ App\Entity\Categoria:
       deserialize: false
       openapi_context:
         summary: Carga automática de categorias y sub categorias
+    clasificadosCategoria:
+      method: POST      
+      path: /categoria/clasificadosCategoria
+      controller: App\Api\Action\Categoria\CladificadosPorCategoria
+      deserialize: false
+      openapi_context:
+        summary: Mostrar los clasificados por categoria        
+    paginarCategorias:
+      method: POST      
+      path: /categoria/paginarCategorias
+      controller: App\Api\Action\Categoria\PaginarCategorias
+      deserialize: false
+      openapi_context:
+        summary: Mostrar los clasificados por categoria                

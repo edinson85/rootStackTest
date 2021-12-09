@@ -16,6 +16,21 @@ services:
     networks:
       - symfony-api-platform-network
 
+  phpmyadmin:
+    container_name: phpMyadmin
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - symfony-api-platform-db
+    restart: always
+    ports:
+      - 89:80
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      PMA_HOST: symfony-api-platform-db
+    networks:
+      - symfony-api-platform-network
+
   symfony-api-platform-be:
     container_name: symfony-api-platform-be
     build:
@@ -25,7 +40,7 @@ services:
     environment:
       PHP_IDE_CONFIG: serverName=Docker
       PHP_XDEBUG_ENABLED: 1
-      XDEBUG_CONFIG: remote_host=172.17.0.1 remote_port=9005 # Linux users
+      XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9003 # Linux users
     #      XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9005 # MacOS users
     volumes:
       - ./:/appdata/www

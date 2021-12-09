@@ -44,3 +44,10 @@ App\Entity\Categoria:
       deserialize: false
       openapi_context:
         summary: Mostrar los clasificados por categoria                
+    paginarSubCategorias:
+      method: POST      
+      path: /categoria/paginarSubCategorias
+      controller: App\Api\Action\Categoria\PaginarSubCategorias
+      deserialize: false
+      openapi_context:
+        summary: Mostrar los clasificados por categoria                        

@@ -62,6 +62,16 @@ class CategoriaRepository extends BaseRepository
         $resultados = $stmt->fetchAll();
         return $resultados;
     }
+    public function paginarSubCategorias($idPadre, $pagina, $tam): ?array
+    {           
+        $inicio = ($pagina - 1) * $tam;
+        $conn = $this->getEntityManager()->getConnection();
+        $comando = " select * from categoria where padre_id ='$idPadre' order by name limit $tam offset $inicio ";
+        $stmt = $conn->query($comando);
+        $stmt->execute();        
+        $resultados = $stmt->fetchAll();
+        return $resultados;
+    }
     /**
      * @throws ORMException
      * @throws OptimisticLockException
